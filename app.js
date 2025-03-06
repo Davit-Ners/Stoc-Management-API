@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import { db } from './models/index.js';
+import mainRouter from './routers/index.js';
 
 // Const
 const app = express();
@@ -14,9 +15,7 @@ app.use(express.json());
 await db.connectDB();
 
 // Routing
-app.get('/api', (req, res) => {
-    res.status(200).json({ message: 'Hello API' });
-});
+app.use('/api', mainRouter);
 
 
 // Launching
