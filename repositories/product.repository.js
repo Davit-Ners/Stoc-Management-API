@@ -7,6 +7,11 @@ const productRepository = {
             attributes: ['id', 'name', 'category']
         });
         return products;
+    },
+
+    getById: async (id) => {
+        const product = await db.models.Product.findByPk(id);
+        return product;
     }
 
 }
