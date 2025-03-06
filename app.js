@@ -1,4 +1,6 @@
 import express from 'express';
+import morgan from 'morgan';
+import { db } from './models/index.js';
 
 // Const
 const app = express();
@@ -6,7 +8,10 @@ const { NODE_ENV, PORT } = process.env;
 
 
 // Middelwares
+app.use(morgan('tiny'));
+app.use(express.json());
 
+await db.connectDB();
 
 // Routing
 app.get('/api', (req, res) => {
