@@ -10,7 +10,7 @@ export default function userModel(sequelize) {
         'user',
 
         {
-            login: {
+            username: {
                 type: DataTypes.STRING(50),
                 allowNull: false,
                 unique: true
@@ -30,6 +30,10 @@ export default function userModel(sequelize) {
             password: {
                 type: DataTypes.STRING(255),
                 allowNull: true
+            },
+
+            lastLogin: {
+                type: DataTypes.DATE
             }
         },
 
