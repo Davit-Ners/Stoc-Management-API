@@ -12,6 +12,11 @@ const productRepository = {
     getById: async (id) => {
         const product = await db.models.Product.findByPk(id);
         return product;
+    },
+
+    add: async ({ name, reference, description, price, category }) => {
+        const product = db.models.Product.create({ name, reference, description, price, category });
+        return product;
     }
 
 }

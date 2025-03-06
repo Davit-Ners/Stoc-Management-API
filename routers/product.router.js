@@ -4,7 +4,8 @@ import productController from "../controllers/product.controller.js";
 const productRouter = Router();
 
 productRouter.route('/')
-    .get(productController.getAll);
+    .get(productController.getAll)
+    .post(productController.add);
 
 productRouter.route('/:id')
     .get(productController.getById);
