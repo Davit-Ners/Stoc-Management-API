@@ -27,8 +27,7 @@ const productController = {
     },
 
     add: async (req, res) => {
-        //TODO verification body data with Zod & middelware
-        const product = await productRepository.add(req.body);
+        const product = await productRepository.add(req.data);
         res.status(200).json(product);
     }
 }
