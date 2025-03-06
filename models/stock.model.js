@@ -16,7 +16,8 @@ export default function stockModel(sequelize) {
                 allowNull: false,
                 validate: {
                     min: 0
-                }
+                },
+                defaultValue: 0
             }
         },
 
