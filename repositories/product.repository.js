@@ -17,6 +17,15 @@ const productRepository = {
     add: async ({ name, reference, description, price, category }) => {
         const product = db.models.Product.create({ name, reference, description, price, category });
         return product;
+    },
+
+    update: async (id, { name, reference, description, price, category }) => {
+        db.models.Product.update(
+            { name, reference, description, price, category },
+            {
+                where: { id: id }
+            }
+        );
     }
 
 }

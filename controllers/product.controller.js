@@ -27,8 +27,16 @@ const productController = {
     },
 
     add: async (req, res) => {
+        //TODO ONLY ADMIN / MANAGER
         const product = await productRepository.add(req.data);
-        res.status(200).json(product);
+        res.location(`/api/product/${product.id}`);
+        res.status(201).json(product);
+    },
+
+    update: async (req, res) => {
+        const id = parseInt(req.params.id);
+        await productRepository.update(id, req.data);
+        res.sendStatus(200);
     }
 }
 
