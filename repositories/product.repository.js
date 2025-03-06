@@ -3,6 +3,8 @@ import { db } from "../models/index.js"
 const productRepository = {
 
     getAll: async () => {
+        //TODO JOIN avec stock pour avoir quantity en +
+        //TODO OFFSET ET LIMITE
         const products = await db.models.Product.findAll({
             attributes: ['id', 'name', 'category']
         });
@@ -24,6 +26,17 @@ const productRepository = {
             { name, reference, description, price, category },
             {
                 where: { id: id }
+            }
+        );
+    },
+
+    addImage: async (id, imagePath) => {
+        db.models.Product.update(
+            { imagePath },
+            {
+                where: {
+                    id: id
+                }
             }
         );
     }

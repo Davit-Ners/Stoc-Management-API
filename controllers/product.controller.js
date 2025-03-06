@@ -37,6 +37,27 @@ const productController = {
         const id = parseInt(req.params.id);
         await productRepository.update(id, req.data);
         res.sendStatus(200);
+    },
+
+    addImage: async (req, res) => {
+        const id = parseInt(req.params.id);
+
+        if (isNaN(id) || id < 1) {
+            res.status(404).json({ error: 'Bad id parameter' });
+            return;
+        }
+
+        const product = await productRepository.getById(id);
+
+        if (!product) {
+            res.sendStatus(404);
+            return;
+        }
+
+        const imagePath = `${req.file.destination}${req.file.filename}`;
+
+        await productRepository.addImage(id, imagePath);
+        res.sendStatus(200);
     }
 }
 
