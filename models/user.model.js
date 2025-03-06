@@ -27,6 +27,14 @@ export default function userModel(sequelize) {
                 allowNull: false
             },
 
+            firstname: {
+                type: DataTypes.STRING(50)
+            },
+
+            lastname: {
+                type: DataTypes.STRING(50)
+            },
+
             password: {
                 type: DataTypes.STRING(255),
                 allowNull: true
@@ -34,6 +42,12 @@ export default function userModel(sequelize) {
 
             lastLogin: {
                 type: DataTypes.DATE
+            },
+
+            isActive: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: true,
+                allowNull: false
             }
         },
 
