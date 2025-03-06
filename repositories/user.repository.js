@@ -12,6 +12,16 @@ const userRepository = {
     getById: async (id) => {
         const user = await db.models.User.findByPk(id);
         return user;
+    },
+
+    getByUsername: async (username) => {
+        const user = await db.models.User.findAll({
+            where: {
+                username: username
+            }
+        });
+
+        return user;
     }
 
 }
