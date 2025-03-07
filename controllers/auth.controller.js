@@ -27,13 +27,18 @@ const authController = {
 
     register: async (req, res) => {
         //TODO ONLY ADMIN
-        //TODO ZOD Verification
+        const exist = await userRepository.checkIfEmailUsernameExist(req.data.email, req.data.username);
 
-        console.log(req.data);
+        if (exist > 0) {
+            res.status(409).json({ error: "A user already exist with that credentials" });
+            return;
+        }
 
         const user = await userRepository.add(req.data);
 
-        res.status(200).json(user);
+        //TODO Send mail for password
+
+        res.status(201).json(user);
     }
 
 }

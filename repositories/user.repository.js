@@ -1,4 +1,5 @@
 import { db } from "../models/index.js";
+import { Op } from "sequelize";
 
 const userRepository = {
 
@@ -22,6 +23,19 @@ const userRepository = {
         });
 
         return user;
+    },
+
+    checkIfEmailUsernameExist: async (email, username) => {
+        const userCount = await db.models.User.count({
+            where: {
+                [Op.or]: [
+                    { email: email },
+                    { username: username }
+                ]
+            }
+        });
+
+        return userCount;
     },
 
     add: async ({ username, email, firstname = "", lastname = "", role }) => {
