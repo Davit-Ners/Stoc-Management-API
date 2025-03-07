@@ -29,7 +29,9 @@ const authController = {
         //TODO ONLY ADMIN
         //TODO ZOD Verification
 
-        const user = await userRepository.add(req.body);
+        console.log(req.data);
+
+        const user = await userRepository.add(req.data);
 
         res.status(200).json(user);
     }
