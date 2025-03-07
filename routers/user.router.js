@@ -9,4 +9,7 @@ userRouter.route('/')
 userRouter.route('/:id')
     .get(userController.getById);
 
+userRouter.route('/:id/disable')
+    .patch(userController.disable);
+
 export default userRouter;

@@ -26,6 +26,25 @@ const userController = {
         console.log(user.lastLogin.toString());
 
         res.status(200).json(new UserDetailDTO(user));
+    },
+
+    disable: async (req, res) => {
+        //TODO ADMIN ONLY
+        const id = parseInt(req.params.id);
+
+        if (isNaN(id) || id < 1) {
+            res.status(404).json({ error: 'Bad id parameter' });
+            return;
+        }
+
+        const user = await userRepository.disable(id);
+
+        if (user[0] === 0) {
+            res.status(404).json({ error: "User not found" });
+            return;
+        }
+
+        res.sendStatus(200);
     }
 
 }

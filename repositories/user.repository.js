@@ -48,6 +48,17 @@ const userRepository = {
         });
 
         return user;
+    },
+
+    disable: async (id) => {
+        return await db.models.User.update(
+            {isActive: false},
+            {
+                where: {
+                    id: id
+                }
+            }
+        );
     }
 
 
