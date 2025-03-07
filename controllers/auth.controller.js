@@ -28,7 +28,7 @@ const authController = {
         await userRepository.updateLastLogin(user.id);
 
         const token = await generateJWT(user);
-        
+
         res.status(200).json(token);
     },
 
@@ -49,7 +49,6 @@ const authController = {
     },
 
     setPasswordPOST: async (req, res) => {
-        //TODO Only THAT user can acces
         const id = parseInt(req.params.id);
         const password = req.data;
 
@@ -61,12 +60,14 @@ const authController = {
     },
 
     setPasswordGET: async (req, res) => {
-        //TODO Only THAT user can acces
         const id = parseInt(req.params.id);
+        const user = await userRepository.getById(id);
+
+        const token = await generateJWT(user);
 
         res.status(200).json({
             infos: "Copiez collez le lien suivant dans postman avec une requête POST en replacant les '---' par votre mot de passe et de meme dans la confirmation",
-            lien: `http://localhost:8080/api/auth/setPassword/${id}?password=---&confirmPassword=---`
+            lien: `http://localhost:8080/api/auth/setPassword/${id}?password=---&confirmPassword=---&token=${token}`
         });
     }
 

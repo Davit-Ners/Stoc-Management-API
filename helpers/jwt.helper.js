@@ -40,7 +40,7 @@ export function decodeJWT(token) {
 
         jwt.verify(token, secret, options, (error, data) => {
             if (error) {
-                reject(error);
+                resolve(-1);
                 return;
             }
 
