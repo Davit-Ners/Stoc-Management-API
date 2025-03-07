@@ -81,6 +81,15 @@ const userRepository = {
                 }
             }
         );
+    },
+
+    updateLastLogin: async (id) => {
+        await db.models.User.update(
+            { lastLogin: new Date() },
+            {
+                where: {id: id}
+            }
+        );
     }
 
 

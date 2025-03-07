@@ -24,7 +24,7 @@ const authController = {
             return;
         }
 
-        //TODO update lastLogin
+        await userRepository.updateLastLogin(user.id);
 
         res.sendStatus(200);
     },
