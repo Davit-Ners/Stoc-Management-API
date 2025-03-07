@@ -12,7 +12,8 @@ export default function transactioModel(sequelize) {
         {
             status: {
                 type: DataTypes.ENUM(['CANCELED', 'APROVED']),
-                allowNull: false
+                allowNull: false,
+                defaultValue: 'APROVED'
             },
 
             type: {

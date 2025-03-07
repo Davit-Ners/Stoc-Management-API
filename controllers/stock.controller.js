@@ -1,10 +1,12 @@
 import productRepository from "../repositories/product.repository.js";
 import stockRepository from "../repositories/stock.repository.js";
+import transactionRepository from "../repositories/transaction.repository.js";
 
 const stockController = {
 
     add: async (req, res) => {
         const productId = req.params.productId;
+        const userId = 1; //TODO -> Modifier ici pour recup userId depuis token
 
         if (isNaN(productId) || productId < 0) {
             res.status(404).json({ error: "Bad parameter id" });
@@ -19,6 +21,8 @@ const stockController = {
         }
 
         await stockRepository.addQuantity(productId, quantity);
+
+        const transaction = await transactionRepository.add(productId, quantity, 'ADD', userId);
 
         res.sendStatus(200);
     },

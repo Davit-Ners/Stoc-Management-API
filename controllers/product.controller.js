@@ -1,6 +1,7 @@
 import { ProductDetailDTO, ProductDTO } from "../dto/product.dto.js";
 import productRepository from "../repositories/product.repository.js"
 import stockRepository from "../repositories/stock.repository.js";
+import transactionRepository from "../repositories/transaction.repository.js";
 
 const productController = {
     getAll: async (req, res) => {
@@ -23,6 +24,8 @@ const productController = {
             res.sendStatus(404);
             return;
         }
+
+        console.log(transaction);
 
         res.status(200).json(new ProductDetailDTO(product));
     },
