@@ -11,4 +11,8 @@ authRouter.route('/login')
 authRouter.route('/register')
     .post(bodyValidatorMiddelware(UserSchema), authController.register);
 
+authRouter.route('/setPassword/:id')
+    .get(authController.setPasswordGET)
+    .post(authController.setPasswordPOST);
+
 export default authRouter;

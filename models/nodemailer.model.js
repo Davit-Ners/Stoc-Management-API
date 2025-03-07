@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const mailFunctions = {
-    sendPasswordEmail: async (email) => {
+    sendPasswordEmail: async (email, id) => {
         try {
             const info = await transporter.sendMail({
                 from: '"Stock API',
@@ -18,7 +18,7 @@ const mailFunctions = {
                 subject: 'Créer votre mot de passe',
                 text: `Bonjour, <br><br>
                        Votre compte vient d'être crée mais vous devez configurer votre mot de passe. <br><br>
-                       Cliquez sur ce lien pour le configurer : <a href=http://localhost:8080/api/user>Configurer mot de passe</a>`
+                       Cliquez sur ce lien pour le configurer : <a href=http://localhost:8080/api/auth/setPassword/${id}>Configurer mot de passe</a>`
             });
     
             console.log("Email envoyé avec succès : ");

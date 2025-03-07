@@ -23,8 +23,6 @@ const userController = {
             return;
         }
 
-        console.log(user.lastLogin.toString());
-
         res.status(200).json(new UserDetailDTO(user));
     },
 

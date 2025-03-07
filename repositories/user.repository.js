@@ -70,6 +70,17 @@ const userRepository = {
                 }
             }
         );
+    },
+
+    setPassword: async (id, password) => {
+        await db.models.User.update(
+            { password },
+            {
+                where: {
+                    id: id
+                }
+            }
+        );
     }
 
 

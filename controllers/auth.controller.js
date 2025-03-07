@@ -39,9 +39,39 @@ const authController = {
 
         const user = await userRepository.add(req.data);
 
-        await mailFunctions.sendPasswordEmail(user.email);
+        await mailFunctions.sendPasswordEmail(user.email, user.id);
 
         res.status(201).json(user);
+    },
+
+    setPasswordPOST: async (req, res) => {
+        //TODO Check password (Strong enough ?)
+        const { password, confirmPassword } = req.body;
+
+        await userRepository.setPassword(password);
+
+        res.sendStatus(200);
+    },
+
+    setPasswordGET: async (req, res) => {
+        const id = parseInt(req.params.id);
+
+        if (isNaN(id) || id < 1) {
+            res.status(404).json({ error: 'Bad id parameter' });
+            return;
+        }
+
+        const user = await userRepository.getById(id);
+
+        if (!user) {
+            res.sendStatus(404);
+            return;
+        }
+
+        res.status(200).json({
+            infos: "Copiez collez le lien suivant dans postman avec une requête POST en replacant les '---' par votre mot de passe et de meme dans la confirmation",
+            lien: `http://localhost:8080/api/auth/setPassword/${user.id}?password=---&confirmPassword=---`
+        });
     }
 
 }
