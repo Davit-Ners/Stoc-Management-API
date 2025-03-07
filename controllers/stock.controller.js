@@ -29,6 +29,7 @@ const stockController = {
 
     remove: async (req, res) => {
         const productId = req.params.productId;
+        const userId = 1; //TODO -> Modifier ici pour recup userId depuis token
 
         if (isNaN(productId) || productId < 0) {
             res.status(404).json({ error: "Bad parameter id" });
@@ -55,6 +56,8 @@ const stockController = {
         }
 
         await stockRepository.removeQuantity(productId, quantity);
+
+        const transaction = await transactionRepository.add(productId, quantity, 'REMOVE', userId);
 
         res.sendStatus(200);
     }
