@@ -1,3 +1,4 @@
+import mailFunctions from "../models/nodemailer.model.js";
 import userRepository from "../repositories/user.repository.js";
 
 const authController = {
@@ -38,7 +39,7 @@ const authController = {
 
         const user = await userRepository.add(req.data);
 
-        //TODO Send mail for password
+        await mailFunctions.sendPasswordEmail(user.email);
 
         res.status(201).json(user);
     }
