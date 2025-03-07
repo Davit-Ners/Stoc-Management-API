@@ -6,4 +6,7 @@ const stockRouter = Router();
 stockRouter.route('/add/:productId')
     .post(stockController.add);
 
+stockRouter.route('/remove/:productId')
+    .post(stockController.remove);
+
 export default stockRouter;

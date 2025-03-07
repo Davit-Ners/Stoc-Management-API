@@ -1,3 +1,4 @@
+import productRepository from "../repositories/product.repository.js";
 import stockRepository from "../repositories/stock.repository.js";
 
 const stockController = {
@@ -17,7 +18,7 @@ const stockController = {
             return;
         }
 
-        await stockRepository.updateQuantity(productId, quantity);
+        await stockRepository.addQuantity(productId, quantity);
 
         res.sendStatus(200);
     },
@@ -37,7 +38,21 @@ const stockController = {
             return;
         }
 
-        //TODO check if remove make quantity negative
+        const product = await productRepository.getById(productId);
+
+        if (!product) {
+            res.sendStatus(404);
+            return;
+        }
+
+        if (product.stock.quantity - quantity < 0) {
+            res.status(409).json({ error: "Quantity cannot be negative after remove" });
+            return;
+        }
+
+        await stockRepository.removeQuantity(productId, quantity);
+
+        res.sendStatus(200);
     }
 
 }
