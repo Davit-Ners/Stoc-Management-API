@@ -22,7 +22,21 @@ const userRepository = {
         });
 
         return user;
+    },
+
+    add: async ({ username, email, firstname = "", lastname = "", role }) => {
+        const user = await db.models.User.create({ 
+            username: username, 
+            email: email, 
+            role: role, 
+            firstname: firstname, 
+            lastname: lastname 
+        });
+
+        return user;
     }
+
+
 
 }
 

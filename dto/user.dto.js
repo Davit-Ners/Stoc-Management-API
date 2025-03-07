@@ -1,7 +1,8 @@
 export class UserDetailDTO {
-    constructor({id, username, firstname, lastname, role, isActive, lastLogin }) {
+    constructor({id, username, email, firstname, lastname, role, isActive, lastLogin }) {
         this.id = id;
         this.username = username;
+        this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
         this.role = role;

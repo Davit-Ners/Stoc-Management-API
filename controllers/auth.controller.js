@@ -23,6 +23,15 @@ const authController = {
         }
 
         res.sendStatus(200);
+    },
+
+    register: async (req, res) => {
+        //TODO ONLY ADMIN
+        //TODO ZOD Verification
+
+        const user = await userRepository.add(req.body);
+
+        res.status(200).json(user);
     }
 
 }
