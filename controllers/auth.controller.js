@@ -1,15 +1,16 @@
 import mailFunctions from "../models/nodemailer.model.js";
 import userRepository from "../repositories/user.repository.js";
+import argon2 from "argon2";
 
 const authController = {
 
     login: async (req, res) => {
-        const { username, password } = req.body;
-
-        if (!username || !password) {
+        if (!req.body?.username || !req.body?.password) {
             res.status(400).json({ error: "Missing credentials" });
             return;
         }
+
+        const { username, password } = req.body;
 
         const user = await userRepository.getByUsername(username.trim());
 
@@ -18,7 +19,7 @@ const authController = {
             return;
         }
 
-        if (user.password !== password) {
+        if (!await argon2.verify(user.password, password)) {
             res.status(400).json({ error: "Wrong Credentials" });
             return;
         }
@@ -49,7 +50,9 @@ const authController = {
         const id = parseInt(req.params.id);
         const password = req.data;
 
-        await userRepository.setPassword(id, password);
+        const hashedPassword = await argon2.hash(password);
+
+        await userRepository.setPassword(id, hashedPassword);
 
         res.sendStatus(200);
     },

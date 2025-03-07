@@ -22,7 +22,7 @@ const userRepository = {
             }
         });
 
-        return user;
+        return user[0];
     },
 
     checkIfEmailUsernameExist: async (email, username) => {
