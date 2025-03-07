@@ -21,6 +21,24 @@ const transactionRepository = {
         });
 
         return transactions;
+    },
+
+    getById: async (id) => {
+        const transaction = await db.models.Transaction.findByPk(id);
+        return transaction;
+    },
+
+    cancel: async (id) => {
+        const modif = await db.models.Transaction.update(
+            { status: 'CANCELED' },
+            {
+                where: {
+                    id: id
+                }
+            }
+        );
+
+        return modif;
     }
 
 }

@@ -66,6 +66,33 @@ const stockController = {
     getAll: async (req, res) => {
         const transactions = await transactionRepository.getAll();
         res.status(200).json(transactions.map(t => new TransactionDTO(t)));
+    },
+
+    cancel: async (req, res) => {
+        const id = req.params.id;
+
+        if (isNaN(id) || id < 0) {
+            res.status(404).json({ error: "Bad parameter id" });
+            return;
+        }
+
+        const transaction = await transactionRepository.getById(id);
+
+        if (!transaction) {
+            res.sendStatus(404);
+            return;
+        }
+
+        await transactionRepository.cancel(id);
+        
+        if (transaction.type === 'ADD') {
+            await stockRepository.removeQuantity(transaction.productId, transaction.quantity);
+            res.sendStatus(200);
+            return;
+        }
+
+        await stockRepository.addQuantity(transaction.productId, transaction.quantity);
+        res.sendStatus(200);
     }
 
 }

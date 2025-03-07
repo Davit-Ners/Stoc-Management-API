@@ -12,4 +12,7 @@ stockRouter.route('/remove/:productId')
 stockRouter.route('/')
     .get(stockController.getAll);
 
+stockRouter.route('/cancel/:id')
+    .post(stockController.cancel);
+
 export default stockRouter;
