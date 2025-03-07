@@ -9,4 +9,7 @@ stockRouter.route('/add/:productId')
 stockRouter.route('/remove/:productId')
     .post(stockController.remove);
 
+stockRouter.route('/')
+    .get(stockController.getAll);
+
 export default stockRouter;

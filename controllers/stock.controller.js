@@ -60,6 +60,11 @@ const stockController = {
         const transaction = await transactionRepository.add(productId, quantity, 'REMOVE', userId);
 
         res.sendStatus(200);
+    },
+
+    getAll: async (req, res) => {
+        const transactions = await transactionRepository.getAll();
+        res.status(200).json(transactions);
     }
 
 }
