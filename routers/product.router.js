@@ -25,7 +25,7 @@ productRouter.route('/:id')
     .get(productController.getById)
     .patch(await updateValidationMiddelware(ProductSchema), productController.update);
 
-    productRouter.route('/upload/:id')
+productRouter.route('/upload/:id')
     .post(upload.single('image'), productController.addImage);
 
 export default productRouter;
