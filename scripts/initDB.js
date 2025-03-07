@@ -17,16 +17,16 @@ async function initDB() {
         // ], { validate: true });
 
         // await db.models.User.bulkCreate([
-        //     { username: "admin", email: "admin@example.com", role: "ADMIN", password: "Test1234=", lastLogin: new Date() },
-        //     { username: "manager1", email: "manager1@example.com", role: "MANAGER", password: "Test1234=", lastLogin: new Date() },
-        //     { username: "manager2", email: "manager2@example.com", role: "MANAGER", password: "Test1234=", lastLogin: new Date() },
-        //     { username: "employe1", email: "employe1@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date() },
-        //     { username: "employe2", email: "employe2@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date() },
-        //     { username: "employe3", email: "employe3@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date() },
-        //     { username: "employe4", email: "employe4@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date() },
-        //     { username: "employe5", email: "employe5@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date() },
-        //     { username: "employe6", email: "employe6@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date() },
-        //     { username: "employe7", email: "employe7@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date() }
+        //     { username: "admin", email: "admin@example.com", role: "ADMIN", password: "Test1234=", lastLogin: new Date(), firstname: "John", lastname: "Doe" },
+        //     { username: "manager1", email: "manager1@example.com", role: "MANAGER", password: "Test1234=", lastLogin: new Date(), firstname: "Alice", lastname: "Smith" },
+        //     { username: "manager2", email: "manager2@example.com", role: "MANAGER", password: "Test1234=", lastLogin: new Date(), firstname: "Bob", lastname: "Johnson" },
+        //     { username: "employe1", email: "employe1@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date(), firstname: "Charlie", lastname: "Brown" },
+        //     { username: "employe2", email: "employe2@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date(), firstname: "David", lastname: "Wilson" },
+        //     { username: "employe3", email: "employe3@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date(), firstname: "Emma", lastname: "Martinez" },
+        //     { username: "employe4", email: "employe4@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date(), firstname: "Frank", lastname: "Anderson" },
+        //     { username: "employe5", email: "employe5@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date(), firstname: "Grace", lastname: "Thomas" },
+        //     { username: "employe6", email: "employe6@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date(), firstname: "Henry", lastname: "Taylor" },
+        //     { username: "employe7", email: "employe7@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date(), firstname: "Isabella", lastname: "Harris" }
         // ], { validate: true });
         
 

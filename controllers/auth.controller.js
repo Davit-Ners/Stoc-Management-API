@@ -22,6 +22,8 @@ const authController = {
             return;
         }
 
+        //TODO update lastLogin
+
         res.sendStatus(200);
     },
 

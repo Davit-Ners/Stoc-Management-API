@@ -16,4 +16,5 @@ export const UserSchema = z.object({
     lastname: z.string(50)
                 .min(2)
                 .max(50)
+                .optional()
 }).required();

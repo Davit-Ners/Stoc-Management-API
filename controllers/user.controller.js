@@ -45,6 +45,12 @@ const userController = {
         }
 
         res.sendStatus(200);
+    },
+
+    update: async (req, res) => {
+        const id = parseInt(req.params.id);
+        await userRepository.update(id, req.data);
+        res.sendStatus(200);
     }
 
 }

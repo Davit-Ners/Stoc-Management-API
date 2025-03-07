@@ -22,7 +22,7 @@ const productRepository = {
     },
 
     update: async (id, { name, reference, description, price, category }) => {
-        db.models.Product.update(
+        await db.models.Product.update(
             { name, reference, description, price, category },
             {
                 where: { id: id }
@@ -31,7 +31,7 @@ const productRepository = {
     },
 
     addImage: async (id, imagePath) => {
-        db.models.Product.update(
+        await db.models.Product.update(
             { imagePath },
             {
                 where: {

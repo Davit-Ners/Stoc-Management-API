@@ -59,6 +59,17 @@ const userRepository = {
                 }
             }
         );
+    },
+
+    update: async (id, { email, role, password, firstname, lastname }) => {
+        await db.models.User.update(
+            { email, role, password, firstname, lastname },
+            {
+                where: {
+                    id: id
+                }
+            }
+        );
     }
 
 
