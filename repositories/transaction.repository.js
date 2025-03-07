@@ -11,8 +11,13 @@ const transactionRepository = {
         const transactions = await db.models.Transaction.findAll({
             order: [
                 ['createdAt', 'DESC']
-            ],
-            attributes: [ 'id', 'productId', 'createdAt' ]
+            ], 
+            include: {
+                model: db.models.User,
+                as: 'responsible',
+                required: true,
+                attributes: ['username', 'id']
+            }
         });
 
         return transactions;

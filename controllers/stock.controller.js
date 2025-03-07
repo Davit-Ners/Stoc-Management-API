@@ -1,3 +1,4 @@
+import { TransactionDTO } from "../dto/transaction.dto.js";
 import productRepository from "../repositories/product.repository.js";
 import stockRepository from "../repositories/stock.repository.js";
 import transactionRepository from "../repositories/transaction.repository.js";
@@ -6,7 +7,7 @@ const stockController = {
 
     add: async (req, res) => {
         const productId = req.params.productId;
-        const userId = 1; //TODO -> Modifier ici pour recup userId depuis token
+        const userId = 3; //TODO -> Modifier ici pour recup userId depuis token
 
         if (isNaN(productId) || productId < 0) {
             res.status(404).json({ error: "Bad parameter id" });
@@ -29,7 +30,7 @@ const stockController = {
 
     remove: async (req, res) => {
         const productId = req.params.productId;
-        const userId = 1; //TODO -> Modifier ici pour recup userId depuis token
+        const userId = 5; //TODO -> Modifier ici pour recup userId depuis token
 
         if (isNaN(productId) || productId < 0) {
             res.status(404).json({ error: "Bad parameter id" });
@@ -64,7 +65,7 @@ const stockController = {
 
     getAll: async (req, res) => {
         const transactions = await transactionRepository.getAll();
-        res.status(200).json(transactions);
+        res.status(200).json(transactions.map(t => new TransactionDTO(t)));
     }
 
 }
