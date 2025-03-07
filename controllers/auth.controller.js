@@ -54,6 +54,20 @@ const authController = {
         }
         const password = req.data;
 
+        const user = await userRepository.getById(id);
+
+        console.log(isNaN(user.password));
+
+        if (!user) {
+            res.sendStatus(404);
+            return;
+        }
+
+        if (user.password) {
+            res.status(404).json({ error: "Ce lien n'est plus valide" });
+            return;
+        }
+
         await userRepository.setPassword(id, password);
 
         res.sendStatus(200);
@@ -71,6 +85,11 @@ const authController = {
 
         if (!user) {
             res.sendStatus(404);
+            return;
+        }
+
+        if (user.password) {
+            res.status(404).json({ error: "Ce lien n'est plus valide" });
             return;
         }
 
