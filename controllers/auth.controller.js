@@ -1,3 +1,4 @@
+import { decodeJWT, generateJWT } from "../helpers/jwt.helper.js";
 import mailFunctions from "../models/nodemailer.model.js";
 import userRepository from "../repositories/user.repository.js";
 import argon2 from "argon2";
@@ -26,7 +27,9 @@ const authController = {
 
         await userRepository.updateLastLogin(user.id);
 
-        res.sendStatus(200);
+        const token = await generateJWT(user);
+        
+        res.status(200).json(token);
     },
 
     register: async (req, res) => {
