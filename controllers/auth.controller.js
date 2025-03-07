@@ -45,28 +45,9 @@ const authController = {
     },
 
     setPasswordPOST: async (req, res) => {
-        //TODO Check password (Strong enough ?)
+        //TODO Only THAT user can acces
         const id = parseInt(req.params.id);
-
-        if (isNaN(id) || id < 1) {
-            res.status(404).json({ error: 'Bad id parameter' });
-            return;
-        }
         const password = req.data;
-
-        const user = await userRepository.getById(id);
-
-        console.log(isNaN(user.password));
-
-        if (!user) {
-            res.sendStatus(404);
-            return;
-        }
-
-        if (user.password) {
-            res.status(404).json({ error: "Ce lien n'est plus valide" });
-            return;
-        }
 
         await userRepository.setPassword(id, password);
 
@@ -74,28 +55,12 @@ const authController = {
     },
 
     setPasswordGET: async (req, res) => {
+        //TODO Only THAT user can acces
         const id = parseInt(req.params.id);
-
-        if (isNaN(id) || id < 1) {
-            res.status(404).json({ error: 'Bad id parameter' });
-            return;
-        }
-
-        const user = await userRepository.getById(id);
-
-        if (!user) {
-            res.sendStatus(404);
-            return;
-        }
-
-        if (user.password) {
-            res.status(404).json({ error: "Ce lien n'est plus valide" });
-            return;
-        }
 
         res.status(200).json({
             infos: "Copiez collez le lien suivant dans postman avec une requête POST en replacant les '---' par votre mot de passe et de meme dans la confirmation",
-            lien: `http://localhost:8080/api/auth/setPassword/${user.id}?password=---&confirmPassword=---`
+            lien: `http://localhost:8080/api/auth/setPassword/${id}?password=---&confirmPassword=---`
         });
     }
 
