@@ -13,6 +13,15 @@ const stockRepository = {
                 productId: productId
             }
         });
+    },
+
+    removeQuantity: async (productId, quantity) => {
+        await db.models.Stock.decrement('quantity', {
+            by: quantity,
+            where: {
+                productId: productId
+            }
+        });
     }
 
 }

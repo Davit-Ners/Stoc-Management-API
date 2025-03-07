@@ -7,11 +7,12 @@ export class ProductDTO {
 }
 
 export class ProductDetailDTO {
-    constructor({id, name, reference, category, description }) {
+    constructor({id, name, reference, category, description, stock }) {
         this.id = id;
         this.name = name;
         this.reference = reference;
         this.category = category;
         this.description = description
+        this.quantity = stock.quantity
     }
 }

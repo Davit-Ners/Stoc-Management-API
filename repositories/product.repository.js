@@ -12,7 +12,14 @@ const productRepository = {
     },
 
     getById: async (id) => {
-        const product = await db.models.Product.findByPk(id);
+        const product = await db.models.Product.findByPk(id, {
+            include: {
+                model: db.models.Stock,
+                as: 'stock',
+                required: true,
+                attributes: ['quantity']
+            }
+        });
         return product;
     },
 
