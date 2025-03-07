@@ -17,7 +17,7 @@ const productRepository = {
     },
 
     add: async ({ name, reference, description, price, category }) => {
-        const product = db.models.Product.create({ name, reference, description, price, category });
+        const product = await db.models.Product.create({ name, reference, description, price, category });
         return product;
     },
 

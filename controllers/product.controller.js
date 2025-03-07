@@ -1,5 +1,6 @@
 import { ProductDetailDTO, ProductDTO } from "../dto/product.dto.js";
 import productRepository from "../repositories/product.repository.js"
+import stockRepository from "../repositories/stock.repository.js";
 
 const productController = {
     getAll: async (req, res) => {
@@ -29,6 +30,7 @@ const productController = {
     add: async (req, res) => {
         //TODO ONLY ADMIN / MANAGER
         const product = await productRepository.add(req.data);
+        await stockRepository.add(product.id);
         res.location(`/api/product/${product.id}`);
         res.status(201).json(product);
     },
