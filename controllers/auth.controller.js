@@ -46,9 +46,15 @@ const authController = {
 
     setPasswordPOST: async (req, res) => {
         //TODO Check password (Strong enough ?)
-        const { password, confirmPassword } = req.body;
+        const id = parseInt(req.params.id);
 
-        await userRepository.setPassword(password);
+        if (isNaN(id) || id < 1) {
+            res.status(404).json({ error: 'Bad id parameter' });
+            return;
+        }
+        const password = req.data;
+
+        await userRepository.setPassword(id, password);
 
         res.sendStatus(200);
     },

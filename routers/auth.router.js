@@ -2,6 +2,7 @@ import { Router } from "express";
 import authController from "../controllers/auth.controller.js";
 import { bodyValidatorMiddelware } from "../middelwares/bodyValidation.middelware.js";
 import { UserSchema } from "../validators/user.validator.js";
+import { passwordValidatorMiddelware } from "../middelwares/passwordValidation.middelware.js";
 
 const authRouter = Router();
 
@@ -13,6 +14,6 @@ authRouter.route('/register')
 
 authRouter.route('/setPassword/:id')
     .get(authController.setPasswordGET)
-    .post(authController.setPasswordPOST);
+    .post(passwordValidatorMiddelware(), authController.setPasswordPOST);
 
 export default authRouter;
