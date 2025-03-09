@@ -8,18 +8,7 @@ const stockController = {
     add: async (req, res) => {
         const productId = parseInt(req.params.productId);
         const userId = 3; //TODO -> Modifier ici pour recup userId depuis token
-
-        if (isNaN(productId) || productId < 0) {
-            res.status(404).json({ error: "Bad parameter id" });
-            return;
-        }
-
         const quantity = req.body.quantity;
-
-        if (isNaN(quantity) || quantity < 1) {
-            res.status(400).json({ error: "Wrong quantity" });
-            return;
-        }
 
         await stockRepository.addQuantity(productId, quantity);
 
@@ -31,19 +20,7 @@ const stockController = {
     remove: async (req, res) => {
         const productId = parseInt(req.params.productId);
         const userId = 5; //TODO -> Modifier ici pour recup userId depuis token
-
-        if (isNaN(productId) || productId < 0) {
-            res.status(404).json({ error: "Bad parameter id" });
-            return;
-        }
-
         const quantity = req.body.quantity;
-
-        if (isNaN(quantity) || quantity < 1) {
-            res.status(400).json({ error: "Wrong quantity" });
-            return;
-        }
-
         const product = await productRepository.getById(productId);
 
         if (!product) {
@@ -97,18 +74,7 @@ const stockController = {
 
     updateStock: async (req, res) => {
         const productId = parseInt(req.params.productId);
-
-        if (isNaN(productId) || productId < 0) {
-            res.status(404).json({ error: "Bad parameter id" });
-            return;
-        }
-
         const quantity = req.body.quantity;
-
-        if (!quantity || quantity < 0) {
-            res.status(400).json({ error: "Quantity cannot be negative" });
-            return;
-        }
 
         const check = await stockRepository.updateStock(productId, quantity);
 
