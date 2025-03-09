@@ -13,6 +13,6 @@ export class ProductDetailDTO {
         this.reference = reference;
         this.category = category;
         this.description = description
-        this.quantity = stock.quantity
+        this.quantite = stock.quantity
     }
 }

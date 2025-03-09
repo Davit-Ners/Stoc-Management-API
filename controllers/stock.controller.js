@@ -6,7 +6,7 @@ import transactionRepository from "../repositories/transaction.repository.js";
 const stockController = {
 
     add: async (req, res) => {
-        const productId = req.params.productId;
+        const productId = parseInt(req.params.productId);
         const userId = 3; //TODO -> Modifier ici pour recup userId depuis token
 
         if (isNaN(productId) || productId < 0) {
@@ -29,7 +29,7 @@ const stockController = {
     },
 
     remove: async (req, res) => {
-        const productId = req.params.productId;
+        const productId = parseInt(req.params.productId);
         const userId = 5; //TODO -> Modifier ici pour recup userId depuis token
 
         if (isNaN(productId) || productId < 0) {

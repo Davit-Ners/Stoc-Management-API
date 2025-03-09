@@ -28,6 +28,19 @@ async function initDB() {
         //     { username: "employe6", email: "employe6@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date(), firstname: "Henry", lastname: "Taylor" },
         //     { username: "employe7", email: "employe7@example.com", role: "EMPLOYE", password: "Test1234=", lastLogin: new Date(), firstname: "Isabella", lastname: "Harris" }
         // ], { validate: true });
+
+        // await db.models.Stock.bulkCreate([
+        //     { quantity: 0, productId: 1 },
+        //     { quantity: 0, productId: 2 },
+        //     { quantity: 0, productId: 3 },
+        //     { quantity: 0, productId: 4 },
+        //     { quantity: 0, productId: 5 },
+        //     { quantity: 0, productId: 6 },
+        //     { quantity: 0, productId: 7 },
+        //     { quantity: 0, productId: 8 },
+        //     { quantity: 0, productId: 9 },
+        //     { quantity: 0, productId: 10 }
+        // ], { validate: true });
         
 
     } catch (error) {

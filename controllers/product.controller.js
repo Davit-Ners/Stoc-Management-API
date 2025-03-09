@@ -18,6 +18,7 @@ const productController = {
         }
 
         const product = await productRepository.getById(id);
+        console.log(product);
 
         if (!product) {
             res.sendStatus(404);
