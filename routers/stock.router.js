@@ -15,4 +15,7 @@ stockRouter.route('/')
 stockRouter.route('/cancel/:id')
     .post(stockController.cancel);
 
+stockRouter.route('/updateStock/:productId')
+    .patch(stockController.updateStock);
+
 export default stockRouter;

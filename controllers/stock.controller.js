@@ -93,6 +93,31 @@ const stockController = {
 
         await stockRepository.addQuantity(transaction.productId, transaction.quantity);
         res.sendStatus(200);
+    },
+
+    updateStock: async (req, res) => {
+        const productId = parseInt(req.params.productId);
+
+        if (isNaN(productId) || productId < 0) {
+            res.status(404).json({ error: "Bad parameter id" });
+            return;
+        }
+
+        const quantity = req.body.quantity;
+
+        if (!quantity || quantity < 0) {
+            res.status(400).json({ error: "Quantity cannot be negative" });
+            return;
+        }
+
+        const check = await stockRepository.updateStock(productId, quantity);
+
+        if (check < 1) {
+            res.sendStatus(404);
+            return;
+        }
+
+        res.sendStatus(200);
     }
 
 }

@@ -22,6 +22,19 @@ const stockRepository = {
                 productId: productId
             }
         });
+    },
+
+    updateStock: async (productId, quantity) => {
+        const check = await db.models.Stock.update(
+            { quantity: quantity },
+            {
+                where: {
+                    productId: productId
+                }
+            }
+        );
+
+        return check;
     }
 
 }
